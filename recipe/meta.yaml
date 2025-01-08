@@ -10,6 +10,7 @@ source:
   sha256: a4d2ef41cc994e716045439bed8c46e82a4dcaf17a1309a2c97c772f6c276c31
 
 build:
+  # This stays as noarch as it's a test dependency: https://github.com/AnacondaRecipes/array-api-strict-feedstock/pull/2#discussion_r1819058071
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
@@ -52,6 +53,8 @@ about:
   doc_url: https://github.com/data-apis/array-api-strict
 
 extra:
+  skip-lints:
+    - avoid_noarch
   recipe-maintainers:
     - asmeurer
     - rgommers
