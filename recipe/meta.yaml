@@ -1,5 +1,5 @@
 {% set name = "array-api-strict" %}
-{% set version = "2.1" %}
+{% set version = "2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,9 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/array_api_strict-{{ version }}.tar.gz
-  sha256: 2f36091d6a5931bbe75db42374d278097cf7d7f3402a55620eccb6a0e3f9f723
+  sha256: a4d2ef41cc994e716045439bed8c46e82a4dcaf17a1309a2c97c772f6c276c31
 
 build:
+  # This stays as noarch as it's a test dependency: https://github.com/AnacondaRecipes/array-api-strict-feedstock/pull/2#discussion_r1819058071
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
@@ -49,9 +50,11 @@ about:
   license_family: BSD
   license_file: LICENSE
   dev_url: https://github.com/data-apis/array-api-strict
-  doc_url: https://github.com/data-apis/array-api-strict
+  doc_url: https://data-apis.org/array-api-strict/
 
 extra:
+  skip-lints:
+    - avoid_noarch
   recipe-maintainers:
     - asmeurer
     - rgommers
