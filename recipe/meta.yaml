@@ -13,17 +13,16 @@ build:
   # This stays as noarch as it's a test dependency: https://github.com/AnacondaRecipes/array-api-strict-feedstock/pull/2#discussion_r1819058071
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<39]
   number: 0
 
 requirements:
   host:
-    - python
+    - python >=3.9
     - pip
     - setuptools
     - wheel
   run:
-    - python
+    - python >=3.9
     - numpy
 
 test:
