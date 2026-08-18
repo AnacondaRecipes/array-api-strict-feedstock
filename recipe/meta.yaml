@@ -1,5 +1,5 @@
 {% set name = "array-api-strict" %}
-{% set version = "2.4.1" %}
+{% set version = "2.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,22 +7,24 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: 6c77dca1cb8c9627084ab687e9b27207b91fca3553f2072bf2d6074f0a1c3b4c
+  sha256: 27485fd687c678894fb193e8f9f5116651a0bfc19dccea164d7d5df83b4e9a82
 
 build:
   number: 0
   # This stays as noarch as it's a test dependency: https://github.com/AnacondaRecipes/array-api-strict-feedstock/pull/2#discussion_r1819058071
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation  
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<310]
 
 requirements:
   host:
-    - python >=3.10
+    - python
     - pip
     - setuptools >=61.0,<=75
     - setuptools_scm >8
+    - setuptools-scm >8,<10
   run:
-    - python >=3.10
+    - python
     - numpy
 
 test:
@@ -41,13 +43,13 @@ about:
   summary: A strict, minimal implementation of the Python array API standard.
   description: |
     array_api_strict is a strict, minimal implementation of the Python array API.
-    The purpose of array-api-strict is to provide an implementation of the array API 
-    for consuming libraries to test against so they can be completely sure their usage 
+    The purpose of array-api-strict is to provide an implementation of the array API
+    for consuming libraries to test against so they can be completely sure their usage
     of the array API is portable.
-    It is not intended to be used by end-users. End-users of the array API should just 
-    use their favorite array library (NumPy, CuPy, PyTorch, etc.) as usual. 
-    It is also not intended to be used as a dependency by consuming libraries. 
-    Consuming library code should use the array-api-compat package to support the array API. 
+    It is not intended to be used by end-users. End-users of the array API should just
+    use their favorite array library (NumPy, CuPy, PyTorch, etc.) as usual.
+    It is also not intended to be used as a dependency by consuming libraries.
+    Consuming library code should use the array-api-compat package to support the array API.
     Rather, it is intended to be used in the test suites of consuming libraries to test their array API usage.
   license: BSD-3-Clause
   license_family: BSD
