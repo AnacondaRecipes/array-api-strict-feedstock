@@ -1,13 +1,13 @@
 {% set name = "array-api-strict" %}
-{% set version = "2.4.1" %}
+{% set version = "2.6.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: 6c77dca1cb8c9627084ab687e9b27207b91fca3553f2072bf2d6074f0a1c3b4c
+  sha256: 27485fd687c678894fb193e8f9f5116651a0bfc19dccea164d7d5df83b4e9a82
 
 build:
   number: 0
@@ -20,7 +20,7 @@ requirements:
     - python >=3.10
     - pip
     - setuptools >=61.0,<=75
-    - setuptools_scm >8
+    - setuptools_scm >8,<10
   run:
     - python >=3.10
     - numpy
